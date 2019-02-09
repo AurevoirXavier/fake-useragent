@@ -1,8 +1,5 @@
 // --- std ---
-use std::collections::{
-    HashSet,
-    hash_set::Iter,
-};
+use std::collections::HashSet;
 
 const BROWSERS: [&'static str; 117] = [
     "ABrowse", "Acoo+Browser", "America+Online+Browser", "AmigaVoyager", "AOL", "Arora", "Avant+Browser", "Beonex", "BonEcho",
@@ -21,24 +18,8 @@ const BROWSERS: [&'static str; 117] = [
 
 pub struct Browsers<'a>(HashSet<&'a str>);
 
-macro_rules! set_unset {
-    ($self_:ident, $setter:ident, $unsetter:ident, $name:expr) => {
-        pub fn $setter(mut $self_) -> Self {
-            $self_.0.insert($name);
-            $self_
-        }
-
-        pub fn $unsetter(mut $self_) -> Self {
-            $self_.0.remove($name);
-            $self_
-        }
-    };
-}
-
 impl<'a> Browsers<'a> {
     pub fn new() -> Browsers<'a> { Browsers(HashSet::new()) }
-
-    pub fn iter(&self) -> Iter<&str> { self.0.iter() }
 
     set_unset!(self, set_a_browser, unset_a_browser, "ABrowse");
     set_unset!(self, set_acoo_browser, unset_acoo_browser, "Acoo+Browser");
@@ -165,3 +146,5 @@ impl<'a> Browsers<'a> {
         self
     }
 }
+
+impl<'a> super::UserAgentString for Browsers<'a> { fn as_vec(&self) -> Vec<&&str> { self.0.iter().collect() } }

@@ -3,3 +3,6 @@
 **/*.rs.bk
 
 Cargo.lock
+
+main.rs
+user_agents
