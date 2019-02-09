@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Xavier Lau <c.estlavie@icloud.com>"]
 edition = "2018"
 repository = "https://github.com/AurevoirXavier/fake-useragent"
-description = "User-Agent List"
+description = "User-Agent List, inspred by python module [fake-useragent](https://github.com/hellysmile/fake-useragent)"
 keywords = ["useragent", "user-agent"]
 license = "MIT/Apache-2.0"
 
