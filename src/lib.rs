@@ -95,7 +95,7 @@ impl<'a> UserAgentsBuilder<'a> {
         }
     }
 
-    pub fn all_browsers(mut self) -> UserAgentsBuilder<'a> {
+    pub fn all_browsers(mut self) -> Self {
         self.kinds[1] = Some(Box::new(Browsers::new().set_all()));
         self
     }

@@ -20,13 +20,21 @@ fn main() {
         println!("{}", user_agents.random());
     }
     
+    // from cache
+    {
+        use fake_useragent::UserAgents;
+        
+        let user_agents = UserAgents::from_cache("/tmp/user_agents");
+        println!("{}", user_agents.random());
+    }
+    
     // customize
     {
         use fake_useragent::{Browser, UserAgentsBuilder};
         
         let user_agent = UserAgentsBuilder::new()
             .cache(false)                 // specify save to file or not, default true
-            .dir("/tmp")                  // specify store path, default dir `./`; default filename `user_agent`
+            .dir("/tmp")                  // specify store path, default dir `./`; default filename `user_agents`
             .thread(20)                   // specify fetch thread, default 20
             .set_browsers(Browsers::new() // specify browsers
                 .set_chrome()
