@@ -3,6 +3,10 @@ name = "fake-useragent"
 version = "0.1.0"
 authors = ["Xavier Lau <c.estlavie@icloud.com>"]
 edition = "2018"
+repository = "https://github.com/AurevoirXavier/fake-useragent"
+description = "User-Agent List"
+keywords = ["useragent", "user-agent"]
+license = "MIT/Apache-2.0"
 
 [dependencies]
 rand = "0.6.5"
