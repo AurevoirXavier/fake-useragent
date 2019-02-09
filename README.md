@@ -42,8 +42,6 @@ fn main() {
 
 ## TODO
 
-One of these fonts(path) is needed.
-
 ```rust
 // selectable
 let user_agents = UserAgents::new();
