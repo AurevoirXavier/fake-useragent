@@ -4,7 +4,7 @@
 
 Inspired by python module [fake-useragent](https://github.com/hellysmile/fake-useragent)
 
-Data from [useragentstring.com](http://useragentstring.com) (if failed to initialize, make sure you can access this website)
+Data from [useragentstring.com](http://useragentstring.com) (if failed to initialize, make sure you can access to this website)
 
 ## Example
 
