@@ -1,6 +1,6 @@
 [package]
 name = "fake-useragent"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Xavier Lau <c.estlavie@icloud.com>"]
 edition = "2018"
 repository = "https://github.com/AurevoirXavier/fake-useragent"
