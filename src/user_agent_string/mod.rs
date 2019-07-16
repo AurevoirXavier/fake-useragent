@@ -18,10 +18,10 @@ pub mod browser;
 use super::UserAgentsBuilder;
 
 pub trait UserAgentString {
-    fn as_vec(&self) -> Vec<&&str>;
+    fn to_vec(&self) -> Vec<&&str>;
 
     fn fetch(&self, thread: u32, user_agents: &mut Vec<String>) {
-        for drivers_chunk in self.as_vec().chunks(thread as usize) {
+        for drivers_chunk in self.to_vec().chunks(thread as usize) {
             let mut handles = vec![];
 
             for driver in drivers_chunk {
