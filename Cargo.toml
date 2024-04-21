@@ -2,7 +2,7 @@
 name = "fake-useragent"
 version = "0.1.3"
 authors = ["Xavier Lau <c.estlavie@icloud.com>"]
-edition = "2018"
+edition = "2021"
 repository = "https://github.com/AurevoirXavier/fake-useragent"
 description = "up to date simple useragent faker with real world database, inspired by python module [fake-useragent](https://github.com/hellysmile/fake-useragent)"
 readme = "README.md"

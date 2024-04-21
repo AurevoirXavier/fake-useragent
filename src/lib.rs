@@ -1,9 +1,7 @@
-extern crate reqwest;
-extern crate select;
+use reqwest;
+use select;
 
-pub use user_agent_string::{
-    browser::Browsers,
-};
+pub use user_agent_string::browser::Browsers;
 
 mod user_agent_string;
 

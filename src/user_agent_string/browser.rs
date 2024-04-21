@@ -147,4 +147,4 @@ impl<'a> Browsers<'a> {
     }
 }
 
-impl<'a> super::UserAgentString for Browsers<'a> { fn as_vec(&self) -> Vec<&&str> { self.0.iter().collect() } }
+impl<'a> super::UserAgentString for Browsers<'a> { fn to_vec(&self) -> Vec<&&str> { self.0.iter().collect() } }
