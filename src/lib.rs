@@ -13,12 +13,7 @@ pub struct UserAgents(Vec<String>);
 impl UserAgents {
     pub fn new() -> UserAgents {
         // --- std ---
-        use std::{
-            env::current_dir,
-            fs::File,
-            io::Read,
-            path::Path,
-        };
+        use std::{env::current_dir, fs::File, io::Read, path::Path};
 
         let path = format!("{}/user_agents", current_dir().unwrap().to_str().unwrap());
         let path = Path::new(&path);
@@ -28,15 +23,14 @@ impl UserAgents {
             file.read_to_string(&mut s).unwrap();
 
             UserAgents(s.lines().map(|user_agent| user_agent.to_owned()).collect())
-        } else { UserAgentsBuilder::new().all_browsers().build() }
+        } else {
+            UserAgentsBuilder::new().all_browsers().build()
+        }
     }
 
     pub fn from_cache(path: &str) -> UserAgents {
         // --- std ---
-        use std::{
-            fs::File,
-            io::Read,
-        };
+        use std::{fs::File, io::Read};
 
         let mut file = File::open(path).unwrap();
         let mut s = String::new();
@@ -47,10 +41,7 @@ impl UserAgents {
 
     pub fn random(&self) -> &str {
         // --- external ---
-        use rand::{
-            thread_rng,
-            Rng,
-        };
+        use rand::{thread_rng, Rng};
 
         &self.0[thread_rng().gen_range(0, self.0.len())]
     }
@@ -89,7 +80,9 @@ impl<'a> UserAgentsBuilder<'a> {
                 .unwrap()
                 .to_owned(),
             user_agents: vec![],
-            kinds: [None, None, None, None, None, None, None, None, None, None, None, None, None],
+            kinds: [
+                None, None, None, None, None, None, None, None, None, None, None, None, None,
+            ],
         }
     }
 
@@ -98,7 +91,6 @@ impl<'a> UserAgentsBuilder<'a> {
         self
     }
     set_unset!(self, set_browsers, unset_browsers, 1);
-
 
     fn get(url: &str) -> String {
         let client = reqwest::ClientBuilder::new()
@@ -112,9 +104,9 @@ impl<'a> UserAgentsBuilder<'a> {
             match client.get(url).send() {
                 Ok(mut resp) => match resp.text() {
                     Ok(html) => return html,
-                    Err(e) => println!("{:?}", e)
-                }
-                Err(e) => println!("{:?}", e)
+                    Err(e) => println!("{:?}", e),
+                },
+                Err(e) => println!("{:?}", e),
             }
         }
     }
@@ -143,7 +135,11 @@ impl<'a> UserAgentsBuilder<'a> {
     }
 
     pub fn thread(mut self, num: u32) -> Self {
-        if num >= 382 { self.thread = 382; } else if num > 0 { self.thread = num; }
+        if num >= 382 {
+            self.thread = 382;
+        } else if num > 0 {
+            self.thread = num;
+        }
         self
     }
 
@@ -154,13 +150,11 @@ impl<'a> UserAgentsBuilder<'a> {
 
     fn store(&self) {
         // --- std ---
-        use std::{
-            fs::File,
-            io::Write,
-        };
+        use std::{fs::File, io::Write};
 
         let mut file = File::create(format!("{}/user_agents", self.dir)).unwrap();
-        file.write_all(self.user_agents.join("\n").as_bytes()).unwrap();
+        file.write_all(self.user_agents.join("\n").as_bytes())
+            .unwrap();
         file.sync_all().unwrap();
     }
 
@@ -171,7 +165,9 @@ impl<'a> UserAgentsBuilder<'a> {
             }
         }
 
-        if self.cache { self.store(); }
+        if self.cache {
+            self.store();
+        }
 
         UserAgents(self.user_agents)
     }

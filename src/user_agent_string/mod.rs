@@ -25,11 +25,18 @@ pub trait UserAgentString {
             let mut handles = vec![];
 
             for driver in drivers_chunk {
-                let url = format!("http://www.useragentstring.com/pages/useragentstring.php?name={}", driver);
-                handles.push(std::thread::spawn(move || UserAgentsBuilder::parse(UserAgentsBuilder::get(&url))));
+                let url = format!(
+                    "http://www.useragentstring.com/pages/useragentstring.php?name={}",
+                    driver
+                );
+                handles.push(std::thread::spawn(move || {
+                    UserAgentsBuilder::parse(UserAgentsBuilder::get(&url))
+                }));
             }
 
-            for handle in handles { user_agents.extend_from_slice(&handle.join().unwrap()); }
+            for handle in handles {
+                user_agents.extend_from_slice(&handle.join().unwrap());
+            }
         }
     }
 }
