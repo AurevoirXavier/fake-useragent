@@ -1,7 +1,7 @@
 // --- std ---
 use std::collections::HashSet;
 
-const BROWSERS: [&'static str; 117] = [
+const BROWSERS: [&str; 117] = [
     "ABrowse",
     "Acoo+Browser",
     "America+Online+Browser",
@@ -122,6 +122,12 @@ const BROWSERS: [&'static str; 117] = [
 ];
 
 pub struct Browsers<'a>(HashSet<&'a str>);
+
+impl<'a> Default for Browsers<'a> {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 impl<'a> Browsers<'a> {
     pub fn new() -> Browsers<'a> {

@@ -10,6 +10,12 @@ use user_agent_string::UserAgentString;
 
 pub struct UserAgents(Vec<String>);
 
+impl Default for UserAgents {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl UserAgents {
     pub fn new() -> UserAgents {
         // --- std ---
@@ -67,6 +73,12 @@ macro_rules! set_unset {
             $self_
         }
     };
+}
+
+impl<'a> Default for UserAgentsBuilder<'a> {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl<'a> UserAgentsBuilder<'a> {
@@ -159,10 +171,8 @@ impl<'a> UserAgentsBuilder<'a> {
     }
 
     pub fn build(mut self) -> UserAgents {
-        for user_agent_string in self.kinds.iter() {
-            if let Some(user_agent_string) = user_agent_string {
-                user_agent_string.fetch(self.thread, &mut self.user_agents);
-            }
+        for user_agent_string in self.kinds.iter().flatten() {
+            user_agent_string.fetch(self.thread, &mut self.user_agents);
         }
 
         if self.cache {
