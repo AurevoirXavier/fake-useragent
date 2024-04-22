@@ -49,7 +49,7 @@ impl UserAgents {
         // --- external ---
         use rand::{thread_rng, Rng};
 
-        &self.0[thread_rng().gen_range(0, self.0.len())]
+        &self.0[thread_rng().gen_range(0..self.0.len())]
     }
 }
 

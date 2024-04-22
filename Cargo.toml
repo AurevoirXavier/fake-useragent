@@ -10,6 +10,6 @@ keywords = ["useragent", "user-agent"]
 license = "MIT/Apache-2.0"
 
 [dependencies]
-rand = "0.6.5"
+rand = "0.8.5"
 reqwest = "0.9.9"
 select = "0.4.2"
