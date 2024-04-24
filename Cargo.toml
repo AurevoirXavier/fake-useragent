@@ -11,5 +11,5 @@ license = "MIT/Apache-2.0"
 
 [dependencies]
 rand = "0.8.5"
-reqwest = "0.9.9"
+reqwest = { version = "0.12.4", features = [ "native-tls", "gzip", "blocking", ] }
 select = "0.6.0"

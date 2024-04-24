@@ -1,5 +1,4 @@
-use reqwest;
-use select;
+use reqwest::blocking::ClientBuilder;
 
 pub use user_agent_string::browser::Browsers;
 
@@ -105,7 +104,7 @@ impl<'a> UserAgentsBuilder<'a> {
     set_unset!(self, set_browsers, unset_browsers, 1);
 
     fn get(url: &str) -> String {
-        let client = reqwest::ClientBuilder::new()
+        let client = ClientBuilder::new()
             .danger_accept_invalid_certs(true)
             .danger_accept_invalid_hostnames(true)
             .gzip(true)
@@ -114,7 +113,7 @@ impl<'a> UserAgentsBuilder<'a> {
 
         loop {
             match client.get(url).send() {
-                Ok(mut resp) => match resp.text() {
+                Ok(resp) => match resp.text() {
                     Ok(html) => return html,
                     Err(e) => println!("{:?}", e),
                 },
