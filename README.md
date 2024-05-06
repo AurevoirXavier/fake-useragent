@@ -30,7 +30,7 @@ fn main() {
     
     // customize
     {
-        use fake_useragent::{Browser, UserAgentsBuilder};
+        use fake_useragent::{Browsers, UserAgentsBuilder};
         
         let user_agent = UserAgentsBuilder::new()
             .cache(false)                 // specify save to file or not, default true
